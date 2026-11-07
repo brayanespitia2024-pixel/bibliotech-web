@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- login.html · Dueño: Leo · Rama: feature/home -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BiblioTech · Ingresar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=Nunito:wght@400;700;800&display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body data-pagina="login">
+
+  <header class="encabezado">
+    <div class="contenedor">
+      <a class="logo" href="index.html">
+        <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
+          <rect x="4" y="6" width="7" height="22" rx="1.5" fill="#E8A33D"/>
+          <rect x="13" y="4" width="7" height="24" rx="1.5" fill="#FFFFFF"/>
+          <rect x="22" y="8" width="7" height="20" rx="1.5" fill="#9FD3C4" transform="rotate(8 25 18)"/>
+        </svg>
+        BiblioTech
+      </a>
+      <nav class="menu" aria-label="Menú principal">
+        <a href="index.html" data-pagina="inicio">Inicio</a>
+        <a href="catalogo.html" data-pagina="catalogo">Catálogo</a>
+        <a href="prestamos.html" data-pagina="prestamos">Mis préstamos <span class="contador" id="contador-prestamos">0</span></a>
+        <a href="acerca.html" data-pagina="acerca">Acerca</a>
+        <a href="admin.html" data-pagina="admin" class="solo-bibliotecario" hidden>Administrar</a>
+      </nav>
+      <div class="zona-usuario" id="zona-usuario"></div>
+    </div>
+  </header>
+
+  <main class="contenedor ingreso">
+    <!-- Columna izquierda: mensaje de bienvenida -->
+    <section class="ingreso-info">
+      <h1>Ingresa a BiblioTech</h1>
+      <p>Con tu cuenta puedes pedir libros prestados, ver tus fechas de devolución y renovar tus préstamos.</p>
+      <ul>
+        <li>Máximo 3 libros a la vez</li>
+        <li>14 días por préstamo</li>
+        <li>Una renovación de 7 días</li>
+      </ul>
+    </section>
+
+    <!-- Columna derecha: formulario -->
+    <section class="panel ingreso-form">
+      <!-- novalidate: desactiva los mensajes del navegador porque login.js muestra los suyos -->
+      <form class="formulario" id="form-ingreso" novalidate>
+        <div class="campo">
+          <label for="nombre">Nombre completo</label>
+          <input id="nombre" name="nombre" type="text" autocomplete="name" placeholder="Ej.: Ana Torres">
+          <span class="error" id="error-nombre"></span>
+        </div>
+
+        <div class="campo">
+          <label for="codigo">Código estudiantil o de docente</label>
+          <input id="codigo" name="codigo" type="text" inputmode="numeric" maxlength="8" placeholder="8 dígitos">
+          <span class="ayuda">Lo encuentras en tu carné.</span>
+          <span class="error" id="error-codigo"></span>
+        </div>
+
+        <div class="campo">
+          <label for="correo">Correo institucional</label>
+          <input id="correo" name="correo" type="email" autocomplete="email" placeholder="nombre@colegio.edu.co">
+          <span class="error" id="error-correo"></span>
+        </div>
+
+        <div class="campo">
+          <label for="rol">Rol</label>
+          <select id="rol" name="rol">
+            <option value="estudiante">Estudiante</option>
+            <option value="docente">Docente</option>
+            <option value="bibliotecario">Bibliotecario (administra libros)</option>
+          </select>
+        </div>
+
+        <button class="boton secundario" type="submit">Ingresar</button>
+        <p class="gris nota">Práctica de clase: los datos se guardan solo en este navegador. En un sistema real los valida el servidor.</p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <span>BiblioTech © 2026 · Proyecto de aula</span>
+      <span><a href="acerca.html">Horarios y reglamento</a> · Equipo: Ana · Leo · Sofi · Mateo</span>
+    </div>
+  </footer>
+
+  <script src="js/datos.js"></script>
+  <script src="js/comun.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

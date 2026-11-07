@@ -1,0 +1,223 @@
+/* =========================================================
+   base.css  ·  Dueña: Ana (líder)  ·  Rama: develop (fase 0)
+   Estilos compartidos por TODAS las páginas: colores,
+   tipografía, encabezado, botones, formularios, avisos,
+   estados y pie de página.
+   Si necesitas cambiar algo aquí, pídeselo a Ana.
+   ========================================================= */
+
+/* 1. Variables: se definen una vez y se usan en todo el sitio */
+:root {
+  --verde: #1E5B4F;        /* color principal */
+  --verde-oscuro: #143F37;
+  --verde-claro: #D5F0E3;
+  --ambar: #E8A33D;        /* color de acento */
+  --ambar-claro: #FCEBD0;
+  --rojo: #B3261E;         /* errores y vencidos */
+  --rojo-claro: #FBE1DE;
+  --fondo: #F4F6F3;
+  --blanco: #FFFFFF;
+  --texto: #1D2522;
+  --gris: #5D6B66;
+  --borde: #D9E0DC;
+  --radio: 12px;
+  --sombra: 0 6px 20px rgba(20, 63, 55, 0.10);
+  --fuente-titulo: "Fraunces", Georgia, serif;
+  --fuente-texto: "Nunito", "Segoe UI", Arial, sans-serif;
+}
+
+/* 2. Reinicio básico */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--fuente-texto);
+  background: var(--fondo);
+  color: var(--texto);
+  line-height: 1.6;
+}
+
+h1, h2, h3 { font-family: var(--fuente-titulo); line-height: 1.2; margin: 0 0 .5em; }
+img { max-width: 100%; }
+a { color: var(--verde); }
+.gris { color: var(--gris); }
+
+/* Texto oculto a la vista, pero que leen los lectores de pantalla */
+.oculto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* Contenedor centrado que usan todas las secciones */
+.contenedor {
+  width: min(1100px, 100% - 32px);
+  margin-inline: auto;
+}
+
+/* 3. Encabezado */
+.encabezado {
+  background: var(--verde);
+  color: var(--blanco);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.encabezado .contenedor {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 12px;
+  flex-wrap: wrap;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--blanco);
+  text-decoration: none;
+  font-family: var(--fuente-titulo);
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+.menu { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
+.menu a {
+  color: var(--blanco);
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 999px;
+}
+.menu a:hover, .menu a.activo { background: rgba(255, 255, 255, 0.15); }
+.contador {
+  background: var(--ambar);
+  color: var(--texto);
+  font-weight: 800;
+  border-radius: 999px;
+  padding: 0 8px;
+  margin-left: 4px;
+}
+/* Zona de usuario: "Ingresar" o "Hola, Ana · Salir" (la llena comun.js) */
+.zona-usuario { display: flex; align-items: center; gap: 8px; font-size: .92rem; }
+.zona-usuario button {
+  background: transparent;
+  color: var(--blanco);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 999px;
+  padding: 5px 12px;
+  font: inherit;
+  cursor: pointer;
+}
+.solo-bibliotecario[hidden] { display: none; }
+
+/* 4. Botones */
+.boton {
+  display: inline-block;
+  border: none;
+  border-radius: 999px;
+  padding: 11px 22px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  background: var(--ambar);
+  color: var(--texto);
+  transition: transform .15s;
+}
+.boton:hover { transform: translateY(-2px); }
+.boton.secundario { background: var(--verde); color: var(--blanco); }
+.boton.borde { background: transparent; border: 2px solid var(--verde); color: var(--verde); }
+.boton.peligro { background: var(--rojo); color: var(--blanco); }
+.boton.pequeno { padding: 6px 14px; font-size: .88rem; }
+.boton:disabled { background: var(--borde); color: var(--gris); cursor: not-allowed; transform: none; border-color: transparent; }
+
+/* 5. Formularios (los usan login.html y admin.html) */
+.formulario { display: grid; gap: 16px; }
+.campo { display: flex; flex-direction: column; gap: 4px; }
+.campo label { font-size: .88rem; font-weight: 700; color: var(--gris); }
+.campo input, .campo select, .campo textarea {
+  font: inherit;
+  padding: 10px 12px;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  background: var(--blanco);
+  color: var(--texto);
+  width: 100%;      /* ocupa todo el ancho de su columna */
+  min-width: 0;     /* permite encogerse en columnas angostas */
+}
+.campo input:focus, .campo select:focus, .campo textarea:focus { border-color: var(--verde); outline: 2px solid var(--verde-claro); }
+.campo .ayuda { font-size: .8rem; color: var(--gris); }
+.campo .error { font-size: .82rem; color: var(--rojo); min-height: 1.2em; }
+.campo.con-error input, .campo.con-error select { border-color: var(--rojo); }
+
+/* 6. Tarjeta genérica y estados */
+.panel {
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  padding: 24px;
+}
+.estado {
+  display: inline-block;
+  font-size: .8rem;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+.estado.ok { background: var(--verde-claro); color: #11613F; }
+.estado.alerta { background: var(--ambar-claro); color: #7A4C08; }
+.estado.vencido { background: var(--rojo-claro); color: var(--rojo); }
+
+/* 7. Portada de libro dibujada con CSS (no necesita imágenes) */
+.portada {
+  aspect-ratio: 3 / 4;
+  border-radius: 6px 10px 10px 6px;
+  padding: 14px;
+  color: var(--blanco);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: inset 8px 0 0 rgba(0, 0, 0, 0.18), var(--sombra);
+  font-family: var(--fuente-titulo);
+}
+.portada strong { font-size: 1.05rem; line-height: 1.2; }
+.portada small { font-family: var(--fuente-texto); opacity: .85; }
+
+/* 8. Aviso flotante (lo muestra la función mostrarAviso de comun.js) */
+.aviso {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--texto);
+  color: var(--blanco);
+  padding: 12px 20px;
+  border-radius: 10px;
+  opacity: 0;
+  transition: opacity .25s, transform .25s;
+  pointer-events: none;
+  z-index: 50;
+  max-width: calc(100% - 32px);
+}
+.aviso.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* 9. Título de cada página interna */
+.cabecera-pagina { margin-block: 36px 20px; }
+.migas { font-size: .88rem; color: var(--gris); margin-bottom: 6px; }
+.migas a { color: var(--gris); }
+
+/* 10. Pie de página */
+.pie {
+  background: var(--verde-oscuro);
+  color: #CFE0DA;
+  margin-top: 60px;
+  padding-block: 28px;
+  font-size: .92rem;
+}
+.pie .contenedor { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.pie a { color: #CFE0DA; }
+
+/* 11. Accesibilidad: el foco del teclado siempre se ve */
+:focus-visible { outline: 3px solid var(--ambar); outline-offset: 2px; }
+
+@media (max-width: 760px) {
+  .encabezado .contenedor { justify-content: center; gap: 8px; }
+  .menu a { padding: 6px 10px; font-size: .92rem; }
+}

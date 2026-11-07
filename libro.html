@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- libro.html · Dueña: Sofi · Rama: feature/catalogo -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BiblioTech · Detalle del libro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=Nunito:wght@400;700;800&display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/catalogo.css">
+</head>
+<body data-pagina="catalogo">
+
+  <header class="encabezado">
+    <div class="contenedor">
+      <a class="logo" href="index.html">
+        <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
+          <rect x="4" y="6" width="7" height="22" rx="1.5" fill="#E8A33D"/>
+          <rect x="13" y="4" width="7" height="24" rx="1.5" fill="#FFFFFF"/>
+          <rect x="22" y="8" width="7" height="20" rx="1.5" fill="#9FD3C4" transform="rotate(8 25 18)"/>
+        </svg>
+        BiblioTech
+      </a>
+      <nav class="menu" aria-label="Menú principal">
+        <a href="index.html" data-pagina="inicio">Inicio</a>
+        <a href="catalogo.html" data-pagina="catalogo">Catálogo</a>
+        <a href="prestamos.html" data-pagina="prestamos">Mis préstamos <span class="contador" id="contador-prestamos">0</span></a>
+        <a href="acerca.html" data-pagina="acerca">Acerca</a>
+        <a href="admin.html" data-pagina="admin" class="solo-bibliotecario" hidden>Administrar</a>
+      </nav>
+      <div class="zona-usuario" id="zona-usuario"></div>
+    </div>
+  </header>
+
+  <main class="contenedor">
+    <p class="migas cabecera-pagina"><a href="index.html">Inicio</a> / <a href="catalogo.html">Catálogo</a> / <span id="miga-titulo">Libro</span></p>
+
+    <!-- ===== DETALLE: libro.js llena cada elemento con id ===== -->
+    <article class="detalle" id="detalle">
+      <div class="detalle-portada portada" id="detalle-portada">
+        <strong id="portada-titulo"></strong>
+        <small id="portada-autor"></small>
+      </div>
+
+      <div class="detalle-info">
+        <span class="chip" id="detalle-genero"></span>
+        <h1 id="detalle-titulo">Cargando…</h1>
+        <p class="autor-grande" id="detalle-autor"></p>
+        <p id="detalle-sinopsis"></p>
+
+        <!-- Lista de definiciones: término (dt) y valor (dd) -->
+        <dl class="ficha">
+          <div><dt>Código</dt><dd id="detalle-codigo"></dd></div>
+          <div><dt>Año</dt><dd id="detalle-anio"></dd></div>
+          <div><dt>Ubicación</dt><dd id="detalle-ubicacion"></dd></div>
+          <div><dt>Ejemplares</dt><dd id="detalle-ejemplares"></dd></div>
+        </dl>
+
+        <div class="acciones">
+          <button class="boton secundario" id="boton-prestar" type="button">Solicitar préstamo</button>
+          <a class="boton borde" href="catalogo.html">Volver al catálogo</a>
+        </div>
+        <p class="gris" id="detalle-mensaje"></p>
+      </div>
+    </article>
+
+    <!-- ===== RELACIONADOS ===== -->
+    <section class="relacionados">
+      <h2>También te puede interesar</h2>
+      <div class="rejilla" id="relacionados"></div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <span>BiblioTech © 2026 · Proyecto de aula</span>
+      <span><a href="acerca.html">Horarios y reglamento</a> · Equipo: Ana · Leo · Sofi · Mateo</span>
+    </div>
+  </footer>
+
+  <script src="js/datos.js"></script>
+  <script src="js/comun.js"></script>
+  <script src="js/libro.js"></script>
+</body>
+</html>

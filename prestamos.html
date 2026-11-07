@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- prestamos.html · Dueña: Sofi · Rama: feature/catalogo -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BiblioTech · Mis préstamos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=Nunito:wght@400;700;800&display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/prestamos.css">
+</head>
+<body data-pagina="prestamos">
+
+  <header class="encabezado">
+    <div class="contenedor">
+      <a class="logo" href="index.html">
+        <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
+          <rect x="4" y="6" width="7" height="22" rx="1.5" fill="#E8A33D"/>
+          <rect x="13" y="4" width="7" height="24" rx="1.5" fill="#FFFFFF"/>
+          <rect x="22" y="8" width="7" height="20" rx="1.5" fill="#9FD3C4" transform="rotate(8 25 18)"/>
+        </svg>
+        BiblioTech
+      </a>
+      <nav class="menu" aria-label="Menú principal">
+        <a href="index.html" data-pagina="inicio">Inicio</a>
+        <a href="catalogo.html" data-pagina="catalogo">Catálogo</a>
+        <a href="prestamos.html" data-pagina="prestamos">Mis préstamos <span class="contador" id="contador-prestamos">0</span></a>
+        <a href="acerca.html" data-pagina="acerca">Acerca</a>
+        <a href="admin.html" data-pagina="admin" class="solo-bibliotecario" hidden>Administrar</a>
+      </nav>
+      <div class="zona-usuario" id="zona-usuario"></div>
+    </div>
+  </header>
+
+  <main class="contenedor">
+    <div class="cabecera-pagina">
+      <p class="migas"><a href="index.html">Inicio</a> / Mis préstamos</p>
+      <h1>Mis préstamos</h1>
+      <p class="gris" id="saludo">Revisa tus fechas de devolución, renueva o devuelve tus libros.</p>
+    </div>
+
+    <!-- Se muestra solo si NO hay sesión (prestamos.js quita el hidden) -->
+    <section class="panel sin-sesion" id="sin-sesion" hidden>
+      <h2>Ingresa para ver tus préstamos</h2>
+      <p>Tus préstamos están asociados a tu código estudiantil.</p>
+      <a class="boton secundario" href="login.html">Ingresar</a>
+    </section>
+
+    <!-- Se muestra solo si HAY sesión -->
+    <div id="con-sesion" hidden>
+      <!-- Resumen en tarjetas -->
+      <section class="resumen" aria-label="Resumen de préstamos">
+        <div><strong id="total-activos">0</strong><span>activos (máx. 3)</span></div>
+        <div class="r-alerta"><strong id="total-por-vencer">0</strong><span>vencen pronto</span></div>
+        <div class="r-vencido"><strong id="total-vencidos">0</strong><span>vencidos</span></div>
+      </section>
+
+      <!-- Tabla de préstamos -->
+      <section class="panel">
+        <div class="tabla-contenedor">
+          <table class="tabla-prestamos">
+            <caption class="oculto">Libros que tienes prestados</caption>
+            <thead>
+              <tr>
+                <th scope="col">Libro</th>
+                <th scope="col">Prestado</th>
+                <th scope="col">Devolver antes de</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="cuerpo-prestamos"></tbody>
+          </table>
+        </div>
+        <p class="gris vacio" id="sin-prestamos" hidden>
+          No tienes libros prestados. <a href="catalogo.html">Ir al catálogo</a>.
+        </p>
+      </section>
+
+      <p class="gris nota-reglas">Recuerda: 14 días por préstamo, una renovación de 7 días y máximo 3 libros. <a href="acerca.html#reglamento">Ver reglamento</a>.</p>
+    </div>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <span>BiblioTech © 2026 · Proyecto de aula</span>
+      <span><a href="acerca.html">Horarios y reglamento</a> · Equipo: Ana · Leo · Sofi · Mateo</span>
+    </div>
+  </footer>
+
+  <script src="js/datos.js"></script>
+  <script src="js/comun.js"></script>
+  <script src="js/prestamos.js"></script>
+</body>
+</html>

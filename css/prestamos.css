@@ -1,0 +1,49 @@
+/* =========================================================
+   prestamos.css  ·  Dueña: Sofi  ·  Rama: feature/catalogo
+   Estilos SOLO de prestamos.html
+   ========================================================= */
+
+/* 1. Tarjetas de resumen */
+.resumen {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.resumen div {
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+  border-top: 5px solid var(--verde);
+  border-radius: var(--radio);
+  padding: 18px;
+}
+.resumen .r-alerta { border-top-color: var(--ambar); }
+.resumen .r-vencido { border-top-color: var(--rojo); }
+.resumen strong { display: block; font-family: var(--fuente-titulo); font-size: 2rem; }
+.resumen span { color: var(--gris); }
+
+/* 2. Tabla: en pantallas pequeñas se desplaza de lado */
+.tabla-contenedor { overflow-x: auto; }
+.tabla-prestamos { width: 100%; border-collapse: collapse; min-width: 640px; }
+.tabla-prestamos th, .tabla-prestamos td {
+  text-align: left;
+  padding: 12px 10px;
+  border-bottom: 1px solid var(--borde);
+  vertical-align: middle;
+}
+.tabla-prestamos th { font-size: .82rem; text-transform: uppercase; letter-spacing: .04em; color: var(--gris); }
+.tabla-prestamos tr:last-child td { border-bottom: none; }
+
+/* Mini portada al lado del título */
+.libro-celda { display: flex; gap: 12px; align-items: center; }
+.mini-portada { width: 34px; height: 46px; border-radius: 3px 5px 5px 3px; flex: none; box-shadow: inset 4px 0 0 rgba(0, 0, 0, .18); }
+.libro-celda small { display: block; color: var(--gris); }
+
+.botones-fila { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.sin-sesion { text-align: center; }
+.nota-reglas { margin-top: 16px; font-size: .9rem; }
+
+@media (max-width: 600px) {
+  .resumen { grid-template-columns: 1fr; }
+}

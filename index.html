@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- index.html · Dueño: Leo · Rama: feature/home -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BiblioTech: catálogo y préstamo de libros de la biblioteca escolar.">
+  <title>BiblioTech · Inicio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=Nunito:wght@400;700;800&display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/home.css">
+</head>
+<body data-pagina="inicio">
+
+  <!-- ===== ENCABEZADO (igual en todas las páginas) ===== -->
+  <header class="encabezado">
+    <div class="contenedor">
+      <a class="logo" href="index.html">
+        <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
+          <rect x="4" y="6" width="7" height="22" rx="1.5" fill="#E8A33D"/>
+          <rect x="13" y="4" width="7" height="24" rx="1.5" fill="#FFFFFF"/>
+          <rect x="22" y="8" width="7" height="20" rx="1.5" fill="#9FD3C4" transform="rotate(8 25 18)"/>
+        </svg>
+        BiblioTech
+      </a>
+      <nav class="menu" aria-label="Menú principal">
+        <a href="index.html" data-pagina="inicio">Inicio</a>
+        <a href="catalogo.html" data-pagina="catalogo">Catálogo</a>
+        <a href="prestamos.html" data-pagina="prestamos">Mis préstamos <span class="contador" id="contador-prestamos">0</span></a>
+        <a href="acerca.html" data-pagina="acerca">Acerca</a>
+        <a href="admin.html" data-pagina="admin" class="solo-bibliotecario" hidden>Administrar</a>
+      </nav>
+      <div class="zona-usuario" id="zona-usuario"></div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== 1. HÉROE CON BUSCADOR ===== -->
+    <section class="heroe">
+      <div class="contenedor heroe-grid">
+        <div>
+          <p class="etiqueta">Biblioteca escolar digital</p>
+          <h1>Encuentra tu próximo libro y pídelo prestado en un clic</h1>
+          <p class="subtitulo">Consulta el catálogo, revisa cuántos ejemplares hay disponibles y lleva el control de tus préstamos y fechas de devolución.</p>
+          <form class="buscador" id="form-buscar">
+            <label for="texto-buscar" class="oculto">Buscar libro</label>
+            <input id="texto-buscar" type="search" placeholder="Título o autor, por ejemplo: Borges" required>
+            <button class="boton" type="submit">Buscar</button>
+          </form>
+        </div>
+        <div class="estante" aria-hidden="true">
+          <span style="--alto:88%;--color:#B5542D"></span>
+          <span style="--alto:100%;--color:#2B4C7E"></span>
+          <span style="--alto:76%;--color:#E8A33D"></span>
+          <span style="--alto:94%;--color:#7A3E8C"></span>
+          <span style="--alto:82%;--color:#9FD3C4"></span>
+          <span style="--alto:98%;--color:#D9492A"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 2. CIFRAS (las calcula home.js) ===== -->
+    <section class="contenedor cifras" aria-label="Cifras de la biblioteca">
+      <div><strong id="total-libros">0</strong><span>títulos</span></div>
+      <div><strong id="total-ejemplares">0</strong><span>ejemplares en total</span></div>
+      <div><strong id="total-disponibles">0</strong><span>disponibles hoy</span></div>
+    </section>
+
+    <!-- ===== 3. GÉNEROS (home.js crea un botón por género) ===== -->
+    <section class="contenedor bloque">
+      <h2>Explora por género</h2>
+      <div class="generos" id="generos"></div>
+    </section>
+
+    <!-- ===== 4. NOVEDADES (home.js pinta los 6 libros más recientes) ===== -->
+    <section class="contenedor bloque">
+      <div class="titulo-bloque">
+        <h2>Novedades</h2>
+        <a href="catalogo.html">Ver todo el catálogo →</a>
+      </div>
+      <div class="novedades" id="novedades"></div>
+    </section>
+
+    <!-- ===== 5. CÓMO FUNCIONA ===== -->
+    <section class="contenedor bloque">
+      <h2>¿Cómo funciona?</h2>
+      <ol class="pasos">
+        <li><strong>Ingresa</strong> con tu nombre y tu código estudiantil.</li>
+        <li><strong>Busca</strong> en el catálogo y revisa cuántos ejemplares quedan.</li>
+        <li><strong>Solicita</strong> el préstamo: tienes 14 días para devolverlo.</li>
+        <li><strong>Renueva</strong> una vez por 7 días más desde «Mis préstamos».</li>
+      </ol>
+    </section>
+
+    <!-- ===== 6. LLAMADO AL REGLAMENTO ===== -->
+    <section class="contenedor bloque">
+      <div class="llamado">
+        <div>
+          <h2>Conoce el reglamento de préstamo</h2>
+          <p>Máximo 3 libros a la vez, 14 días por préstamo y una renovación. Si tienes un libro vencido no podrás pedir otro.</p>
+        </div>
+        <a class="boton" href="acerca.html#reglamento">Leer el reglamento</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== PIE DE PÁGINA (igual en todas las páginas) ===== -->
+  <footer class="pie">
+    <div class="contenedor">
+      <span>BiblioTech © 2026 · Proyecto de aula</span>
+      <span><a href="acerca.html">Horarios y reglamento</a> · Equipo: Ana · Leo · Sofi · Mateo</span>
+    </div>
+  </footer>
+
+  <!-- Scripts al final, en este orden: datos → común → propio de la página -->
+  <script src="js/datos.js"></script>
+  <script src="js/comun.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+# .gitignore · Dueña: Ana (líder)
+# Dependencias de Node: se reinstalan con "npm install"
+node_modules/
+# Variables de entorno con claves o configuración privada
+.env
+# Registros y archivos del sistema
+*.log
+.DS_Store
+Thumbs.db
+# Configuración personal del editor
+.vscode/

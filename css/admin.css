@@ -1,0 +1,56 @@
+/* =========================================================
+   admin.css  ·  Dueño: Mateo  ·  Rama: feature/admin
+   Estilos SOLO de admin.html
+   ========================================================= */
+
+.cabecera-admin {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Formulario a la izquierda (más angosto), tabla a la derecha */
+.admin-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 380px) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+.fila-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.fila-2 > * { min-width: 0; }
+.campo input[type="color"] { height: 44px; padding: 4px; }
+.acciones-form { display: flex; gap: 10px; flex-wrap: wrap; }
+
+/* Lista de errores que devuelve la API */
+.errores { margin: 0; padding-left: 1.2em; color: var(--rojo); font-size: .9rem; }
+.errores:empty { display: none; }
+
+/* Aviso cuando la API está apagada */
+.aviso-api { border-left: 6px solid var(--ambar); margin-bottom: 24px; }
+.aviso-api pre {
+  background: var(--texto);
+  color: #E6EDE9;
+  padding: 12px 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+/* Tabla */
+.titulo-tabla { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+.titulo-tabla h2 { margin: 0; }
+.titulo-tabla input { font: inherit; padding: 8px 12px; border: 1px solid var(--borde); border-radius: 8px; }
+.tabla-contenedor { overflow-x: auto; }
+.tabla-admin { width: 100%; border-collapse: collapse; min-width: 520px; }
+.tabla-admin th, .tabla-admin td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--borde); vertical-align: middle; }
+.tabla-admin th { font-size: .8rem; text-transform: uppercase; color: var(--gris); }
+.tabla-admin td small { display: block; color: var(--gris); }
+.tabla-admin code { font-size: .85rem; }
+.tabla-admin .botones-fila { display: flex; gap: 6px; }
+.tabla-admin tr.editando { background: var(--ambar-claro); }
+.punto { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+
+@media (max-width: 900px) {
+  .admin-grid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- catalogo.html · Dueña: Sofi · Rama: feature/catalogo -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BiblioTech · Catálogo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=Nunito:wght@400;700;800&display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/catalogo.css">
+</head>
+<body data-pagina="catalogo">
+
+  <header class="encabezado">
+    <div class="contenedor">
+      <a class="logo" href="index.html">
+        <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
+          <rect x="4" y="6" width="7" height="22" rx="1.5" fill="#E8A33D"/>
+          <rect x="13" y="4" width="7" height="24" rx="1.5" fill="#FFFFFF"/>
+          <rect x="22" y="8" width="7" height="20" rx="1.5" fill="#9FD3C4" transform="rotate(8 25 18)"/>
+        </svg>
+        BiblioTech
+      </a>
+      <nav class="menu" aria-label="Menú principal">
+        <a href="index.html" data-pagina="inicio">Inicio</a>
+        <a href="catalogo.html" data-pagina="catalogo">Catálogo</a>
+        <a href="prestamos.html" data-pagina="prestamos">Mis préstamos <span class="contador" id="contador-prestamos">0</span></a>
+        <a href="acerca.html" data-pagina="acerca">Acerca</a>
+        <a href="admin.html" data-pagina="admin" class="solo-bibliotecario" hidden>Administrar</a>
+      </nav>
+      <div class="zona-usuario" id="zona-usuario"></div>
+    </div>
+  </header>
+
+  <main class="contenedor">
+    <div class="cabecera-pagina cabecera-catalogo">
+      <div>
+        <p class="migas"><a href="index.html">Inicio</a> / Catálogo</p>
+        <h1>Catálogo</h1>
+        <p id="resumen" class="gris">Cargando libros…</p>
+      </div>
+      <span id="origen-datos" class="estado">Conectando…</span>
+    </div>
+
+    <!-- ===== FILTROS ===== -->
+    <form class="filtros" id="filtros">
+      <div class="campo campo-texto">
+        <label for="filtro-texto">Buscar</label>
+        <input id="filtro-texto" type="search" placeholder="Título o autor">
+      </div>
+      <div class="campo">
+        <label for="filtro-genero">Género</label>
+        <select id="filtro-genero">
+          <option value="">Todos</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="filtro-orden">Ordenar por</label>
+        <select id="filtro-orden">
+          <option value="titulo">Título (A-Z)</option>
+          <option value="recientes">Más recientes</option>
+          <option value="disponibles">Más disponibles</option>
+        </select>
+      </div>
+      <label class="check">
+        <input id="filtro-disponibles" type="checkbox"> Solo disponibles
+      </label>
+      <button class="boton borde pequeno" type="reset">Limpiar</button>
+    </form>
+
+    <!-- ===== RESULTADOS: catalogo.js pinta aquí las tarjetas ===== -->
+    <section class="rejilla" id="rejilla" aria-live="polite"></section>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <span>BiblioTech © 2026 · Proyecto de aula</span>
+      <span><a href="acerca.html">Horarios y reglamento</a> · Equipo: Ana · Leo · Sofi · Mateo</span>
+    </div>
+  </footer>
+
+  <script src="js/datos.js"></script>
+  <script src="js/comun.js"></script>
+  <script src="js/catalogo.js"></script>
+</body>
+</html>

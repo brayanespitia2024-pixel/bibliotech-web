@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- admin.html · Dueño: Mateo · Rama: feature/admin -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BiblioTech · Administrar libros</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=Nunito:wght@400;700;800&display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body data-pagina="admin">
+
+  <header class="encabezado">
+    <div class="contenedor">
+      <a class="logo" href="index.html">
+        <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
+          <rect x="4" y="6" width="7" height="22" rx="1.5" fill="#E8A33D"/>
+          <rect x="13" y="4" width="7" height="24" rx="1.5" fill="#FFFFFF"/>
+          <rect x="22" y="8" width="7" height="20" rx="1.5" fill="#9FD3C4" transform="rotate(8 25 18)"/>
+        </svg>
+        BiblioTech
+      </a>
+      <nav class="menu" aria-label="Menú principal">
+        <a href="index.html" data-pagina="inicio">Inicio</a>
+        <a href="catalogo.html" data-pagina="catalogo">Catálogo</a>
+        <a href="prestamos.html" data-pagina="prestamos">Mis préstamos <span class="contador" id="contador-prestamos">0</span></a>
+        <a href="acerca.html" data-pagina="acerca">Acerca</a>
+        <a href="admin.html" data-pagina="admin" class="solo-bibliotecario" hidden>Administrar</a>
+      </nav>
+      <div class="zona-usuario" id="zona-usuario"></div>
+    </div>
+  </header>
+
+  <main class="contenedor">
+    <div class="cabecera-pagina cabecera-admin">
+      <div>
+        <p class="migas"><a href="index.html">Inicio</a> / Administrar</p>
+        <h1>Administrar libros</h1>
+        <p class="gris">Agrega, edita o elimina libros del catálogo. Los cambios se guardan en la API.</p>
+      </div>
+      <span id="origen-datos" class="estado">Conectando…</span>
+    </div>
+
+    <!-- Si el usuario no es bibliotecario -->
+    <section class="panel" id="sin-permiso" hidden>
+      <h2>Acceso solo para bibliotecarios</h2>
+      <p>Ingresa con el rol «Bibliotecario» para administrar el catálogo.</p>
+      <a class="boton secundario" href="login.html">Ingresar</a>
+    </section>
+
+    <!-- Si la API está apagada -->
+    <section class="panel aviso-api" id="aviso-api" hidden>
+      <h2>La API está apagada</h2>
+      <p>Para guardar cambios enciende el servidor de Mateo:</p>
+      <pre><code>cd api
+npm install
+npm run dev</code></pre>
+      <p class="gris">Mientras tanto ves la lista de respaldo en modo solo lectura.</p>
+    </section>
+
+    <div class="admin-grid" id="zona-admin" hidden>
+      <!-- ===== FORMULARIO: sirve para crear y para editar ===== -->
+      <section class="panel">
+        <h2 id="titulo-formulario">Agregar libro</h2>
+        <form class="formulario" id="form-libro" novalidate>
+          <input type="hidden" id="libro-id" name="id">
+
+          <div class="campo">
+            <label for="titulo">Título *</label>
+            <input id="titulo" name="titulo" type="text" required>
+          </div>
+          <div class="campo">
+            <label for="autor">Autor *</label>
+            <input id="autor" name="autor" type="text" required>
+          </div>
+          <div class="fila-2">
+            <div class="campo">
+              <label for="anio">Año *</label>
+              <input id="anio" name="anio" type="number" min="1000" max="2100" required>
+            </div>
+            <div class="campo">
+              <label for="total">Ejemplares *</label>
+              <input id="total" name="total" type="number" min="1" value="1" required>
+            </div>
+          </div>
+          <div class="fila-2">
+            <div class="campo">
+              <label for="genero">Género *</label>
+              <!-- datalist sugiere valores pero deja escribir uno nuevo -->
+              <input id="genero" name="genero" list="lista-generos" required>
+              <datalist id="lista-generos"></datalist>
+            </div>
+            <div class="campo">
+              <label for="ubicacion">Ubicación</label>
+              <input id="ubicacion" name="ubicacion" type="text" placeholder="Estante A-1">
+            </div>
+          </div>
+          <div class="campo">
+            <label for="color">Color de la portada</label>
+            <input id="color" name="color" type="color" value="#1E5B4F">
+          </div>
+          <div class="campo">
+            <label for="sinopsis">Sinopsis</label>
+            <textarea id="sinopsis" name="sinopsis" rows="4"></textarea>
+          </div>
+
+          <ul class="errores" id="errores" aria-live="assertive"></ul>
+
+          <div class="acciones-form">
+            <button class="boton secundario" type="submit" id="boton-guardar">Guardar libro</button>
+            <button class="boton borde" type="reset" id="boton-cancelar">Cancelar</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- ===== TABLA DE LIBROS ===== -->
+      <section class="panel">
+        <div class="titulo-tabla">
+          <h2>Libros registrados</h2>
+          <input id="buscar-admin" type="search" placeholder="Filtrar…" aria-label="Filtrar libros">
+        </div>
+        <div class="tabla-contenedor">
+          <table class="tabla-admin">
+            <thead>
+              <tr>
+                <th scope="col">Código</th>
+                <th scope="col">Título</th>
+                <th scope="col">Género</th>
+                <th scope="col">Disp.</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="cuerpo-admin"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <span>BiblioTech © 2026 · Proyecto de aula</span>
+      <span><a href="acerca.html">Horarios y reglamento</a> · Equipo: Ana · Leo · Sofi · Mateo</span>
+    </div>
+  </footer>
+
+  <script src="js/datos.js"></script>
+  <script src="js/comun.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

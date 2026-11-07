@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- acerca.html · Dueño: Leo · Rama: feature/home -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BiblioTech · Acerca y reglamento</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=Nunito:wght@400;700;800&display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/home.css">
+</head>
+<body data-pagina="acerca">
+
+  <header class="encabezado">
+    <div class="contenedor">
+      <a class="logo" href="index.html">
+        <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
+          <rect x="4" y="6" width="7" height="22" rx="1.5" fill="#E8A33D"/>
+          <rect x="13" y="4" width="7" height="24" rx="1.5" fill="#FFFFFF"/>
+          <rect x="22" y="8" width="7" height="20" rx="1.5" fill="#9FD3C4" transform="rotate(8 25 18)"/>
+        </svg>
+        BiblioTech
+      </a>
+      <nav class="menu" aria-label="Menú principal">
+        <a href="index.html" data-pagina="inicio">Inicio</a>
+        <a href="catalogo.html" data-pagina="catalogo">Catálogo</a>
+        <a href="prestamos.html" data-pagina="prestamos">Mis préstamos <span class="contador" id="contador-prestamos">0</span></a>
+        <a href="acerca.html" data-pagina="acerca">Acerca</a>
+        <a href="admin.html" data-pagina="admin" class="solo-bibliotecario" hidden>Administrar</a>
+      </nav>
+      <div class="zona-usuario" id="zona-usuario"></div>
+    </div>
+  </header>
+
+  <main class="contenedor">
+    <div class="cabecera-pagina">
+      <p class="migas"><a href="index.html">Inicio</a> / Acerca</p>
+      <h1>Acerca de la biblioteca</h1>
+      <p class="gris">La biblioteca escolar presta libros a estudiantes y docentes. BiblioTech es su catálogo en línea.</p>
+    </div>
+
+    <!-- ===== 1. HORARIOS Y UBICACIÓN ===== -->
+    <section class="info-grid">
+      <article class="panel">
+        <h2>Horario de atención</h2>
+        <table class="tabla-horario">
+          <caption class="oculto">Horario de atención de la biblioteca</caption>
+          <thead>
+            <tr><th scope="col">Día</th><th scope="col">Horario</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Lunes a jueves</td><td>7:00 a. m. – 6:00 p. m.</td></tr>
+            <tr><td>Viernes</td><td>7:00 a. m. – 4:00 p. m.</td></tr>
+            <tr><td>Sábados</td><td>8:00 a. m. – 12:00 m.</td></tr>
+            <tr><td>Domingos y festivos</td><td>Cerrado</td></tr>
+          </tbody>
+        </table>
+      </article>
+      <article class="panel">
+        <h2>Dónde estamos</h2>
+        <address>
+          Edificio B, segundo piso<br>
+          Sede principal del colegio<br>
+          Correo: <span class="dato">biblioteca@colegio.edu.co</span><br>
+          Extensión: <span class="dato">205</span>
+        </address>
+        <p class="gris">Los libros se recogen y se devuelven en el mostrador principal presentando el carné estudiantil.</p>
+      </article>
+    </section>
+
+    <!-- ===== 2. REGLAMENTO ===== -->
+    <section class="bloque" id="reglamento">
+      <h2>Reglamento de préstamo</h2>
+      <ol class="reglas">
+        <li><strong>Usuarios:</strong> pueden pedir libros los estudiantes y docentes registrados con su código.</li>
+        <li><strong>Cantidad:</strong> máximo <strong>3 libros</strong> al mismo tiempo por persona.</li>
+        <li><strong>Plazo:</strong> cada préstamo dura <strong>14 días</strong> calendario.</li>
+        <li><strong>Renovación:</strong> se puede renovar <strong>una sola vez</strong> por 7 días más, siempre que el préstamo no esté vencido.</li>
+        <li><strong>Vencidos:</strong> quien tenga un libro vencido no puede pedir otro hasta devolverlo.</li>
+        <li><strong>Cuidado:</strong> el libro se devuelve en el mismo estado. Si se pierde o se daña, se repone con otro ejemplar.</li>
+      </ol>
+    </section>
+
+    <!-- ===== 3. PREGUNTAS FRECUENTES (details/summary no necesita JavaScript) ===== -->
+    <section class="bloque">
+      <h2>Preguntas frecuentes</h2>
+      <div class="preguntas">
+        <details>
+          <summary>¿Cómo pido un libro?</summary>
+          <p>Ingresa con tu nombre y código, busca el libro en el catálogo y pulsa «Solicitar préstamo». Luego recógelo en el mostrador.</p>
+        </details>
+        <details>
+          <summary>¿Qué significa «Vence pronto»?</summary>
+          <p>Que faltan 3 días o menos para la fecha de devolución. Puedes renovarlo una vez desde «Mis préstamos».</p>
+        </details>
+        <details>
+          <summary>¿Por qué el catálogo dice «respaldo local»?</summary>
+          <p>Porque el servidor de la biblioteca (la API) no está encendido. El catálogo funciona igual con una copia de los datos.</p>
+        </details>
+        <details>
+          <summary>¿Quién puede agregar libros nuevos?</summary>
+          <p>Solo el personal con rol de bibliotecario, desde la página «Administrar».</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- ===== 4. EQUIPO DE DESARROLLO ===== -->
+    <section class="bloque">
+      <h2>Equipo de desarrollo</h2>
+      <ul class="equipo">
+        <li><strong>Ana</strong><span>Líder e integración</span><code>develop</code></li>
+        <li><strong>Leo</strong><span>Inicio, acerca e ingreso</span><code>feature/home</code></li>
+        <li><strong>Sofi</strong><span>Catálogo, detalle y préstamos</span><code>feature/catalogo</code></li>
+        <li><strong>Mateo</strong><span>API y administración</span><code>feature/api-libros</code></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <span>BiblioTech © 2026 · Proyecto de aula</span>
+      <span><a href="acerca.html">Horarios y reglamento</a> · Equipo: Ana · Leo · Sofi · Mateo</span>
+    </div>
+  </footer>
+
+  <script src="js/datos.js"></script>
+  <script src="js/comun.js"></script>
+</body>
+</html>

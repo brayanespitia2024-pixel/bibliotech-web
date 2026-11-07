@@ -1,0 +1,180 @@
+/* =========================================================
+   home.css  ·  Dueño: Leo  ·  Rama: feature/home
+   Estilos de index.html y acerca.html
+   ========================================================= */
+
+/* ---------- PORTADA (index.html) ---------- */
+
+/* 1. Héroe */
+.heroe {
+  background: linear-gradient(160deg, var(--verde) 0%, var(--verde-oscuro) 100%);
+  color: var(--blanco);
+  padding-block: 56px 72px;
+}
+.heroe-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+.heroe h1 { font-size: clamp(2rem, 4vw, 3rem); }
+.etiqueta {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: .85rem;
+  margin: 0 0 14px;
+}
+.subtitulo { color: #CFE0DA; font-size: 1.1rem; max-width: 52ch; }
+
+/* 2. Buscador */
+.buscador {
+  display: flex;
+  gap: 8px;
+  background: var(--blanco);
+  padding: 6px;
+  border-radius: 999px;
+  margin-top: 24px;
+  max-width: 520px;
+}
+.buscador input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  padding: 10px 16px;
+  font: inherit;
+  border-radius: 999px;
+  outline: none;
+}
+
+/* 3. Estante decorativo: cada span es un lomo de libro */
+.estante {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  height: 240px;
+  border-bottom: 10px solid var(--ambar);
+  padding-inline: 20px;
+}
+.estante span {
+  flex: 1;
+  height: var(--alto);
+  background: var(--color);
+  border-radius: 6px 6px 0 0;
+  box-shadow: inset -6px 0 0 rgba(0, 0, 0, 0.15);
+}
+
+/* 4. Cifras */
+.cifras {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: -36px;
+}
+.cifras div {
+  background: var(--blanco);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  padding: 20px;
+  text-align: center;
+}
+.cifras strong { display: block; font-family: var(--fuente-titulo); font-size: 2.2rem; color: var(--verde); }
+.cifras span { color: var(--gris); }
+
+/* 5. Bloques, géneros y novedades */
+.bloque { margin-top: 48px; }
+.titulo-bloque { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.generos { display: flex; flex-wrap: wrap; gap: 10px; }
+.generos button {
+  font: inherit;
+  font-weight: 700;
+  border: 1px solid var(--borde);
+  background: var(--blanco);
+  border-radius: 999px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+.generos button:hover { border-color: var(--verde); color: var(--verde); }
+.generos small { color: var(--gris); font-weight: 400; margin-left: 4px; }
+
+.novedades {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+}
+.novedad { cursor: pointer; }
+.novedad:hover .portada { transform: translateY(-4px); }
+.novedad .portada { transition: transform .2s; }
+.novedad p { margin: 8px 0 0; font-weight: 700; }
+.novedad > small { color: var(--gris); } /* el > evita pintar el autor de la portada */
+
+/* 6. Pasos */
+.pasos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 0;
+  list-style: none;
+  counter-reset: paso;
+}
+.pasos li {
+  background: var(--blanco);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  padding: 20px;
+  counter-increment: paso;
+}
+.pasos li::before {
+  content: counter(paso);
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--ambar);
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+/* 7. Llamado al reglamento */
+.llamado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  background: var(--ambar-claro);
+  border-radius: var(--radio);
+  padding: 28px;
+}
+.llamado p { margin: 0; max-width: 60ch; }
+
+/* ---------- ACERCA (acerca.html) ---------- */
+.info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.tabla-horario { width: 100%; border-collapse: collapse; }
+.tabla-horario th, .tabla-horario td { text-align: left; padding: 8px 4px; border-bottom: 1px solid var(--borde); }
+.tabla-horario th { color: var(--gris); font-size: .85rem; }
+address { font-style: normal; line-height: 1.9; margin-bottom: 12px; }
+.dato { font-weight: 700; }
+
+.reglas { display: grid; gap: 10px; padding-left: 1.4em; }
+.reglas li { background: var(--blanco); border: 1px solid var(--borde); border-radius: 10px; padding: 12px 16px; }
+
+.preguntas { display: grid; gap: 10px; }
+.preguntas details { background: var(--blanco); border: 1px solid var(--borde); border-radius: 10px; padding: 12px 16px; }
+.preguntas summary { font-weight: 800; cursor: pointer; }
+.preguntas p { margin: 10px 0 0; }
+
+.equipo { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.equipo li { background: var(--blanco); border: 1px solid var(--borde); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 4px; }
+.equipo span { color: var(--gris); font-size: .9rem; }
+.equipo code { font-size: .82rem; color: var(--verde); }
+
+/* ---------- RESPONSIVE: en celular todo pasa a una o dos columnas ---------- */
+@media (max-width: 860px) {
+  .heroe-grid, .cifras, .info-grid { grid-template-columns: 1fr; }
+  .novedades, .pasos, .equipo { grid-template-columns: repeat(2, 1fr); }
+  .estante { height: 140px; }
+  .cifras { margin-top: 24px; }
+}
